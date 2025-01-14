@@ -1,10 +1,12 @@
-FROM python:3.8-slim-buster
+FROM arm32v7/python:2.7.13-jessie
 
 WORKDIR /flask-app
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt 
+RUN pip install --trusted-host pypi.org --trusted-host
+pypi.python.org --trusted-host files.pythonhosted.org -r
+requirements.txt 
 
 COPY ./app ./app 
 
